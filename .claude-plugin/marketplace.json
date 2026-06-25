@@ -1,0 +1,17 @@
+{
+  "name": "team-engineering-standards",
+  "owner": {
+    "name": "Tony Yeh"
+  },
+  "metadata": {
+    "description": "團隊內部 Claude Code engineering standards plugins"
+  },
+  "plugins": [
+    {
+      "name": "design-gate",
+      "source": "./plugins/design-gate",
+      "description": "低摩擦的 design-first、human review 開發流程",
+      "version": "0.1.0"
+    }
+  ]
+}

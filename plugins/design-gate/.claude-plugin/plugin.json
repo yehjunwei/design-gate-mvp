@@ -1,0 +1,15 @@
+{
+  "name": "design-gate",
+  "version": "0.1.0",
+  "description": "低摩擦的 design-first、human-gated software development workflow。",
+  "author": {
+    "name": "Tony Yeh"
+  },
+  "license": "MIT",
+  "keywords": [
+    "design-first",
+    "human-review",
+    "coding-standards",
+    "software-engineering"
+  ]
+}
