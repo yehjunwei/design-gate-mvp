@@ -26,7 +26,7 @@ cd design-gate-mvp
 在目標 repository 直接開始一個 task（gate 會自動生效）：
 
 ```text
-/design-gate:design-gate TASK-123 實作一個ABC功能
+/design-gate:start TASK-123 實作一個ABC功能
 /design-gate:approve-design TASK-123
 # implementation 完成後查看 git diff
 /design-gate:approve-implementation TASK-123
