@@ -145,6 +145,8 @@ def handle_pre_tool(payload: Dict[str, Any]) -> None:
             or ""
         )
         rel = relative_path(project, str(file_value))
+        if rel.lower().endswith(".md"):
+            return  # ponytail: markdown is docs, never gated source
         if not is_allowed_before_approval(rel, config):
             emit_deny(
                 "Design Gate：design 尚未核准。此階段只能修改 docs/designs/ "

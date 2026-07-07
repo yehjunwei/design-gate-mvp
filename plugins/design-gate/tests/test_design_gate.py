@@ -1,4 +1,6 @@
+import contextlib
 import importlib.util
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -38,6 +40,24 @@ class DesignGateTests(unittest.TestCase):
         self.assertFalse(
             dg.is_allowed_before_approval("src/service.py", config)
         )
+
+    def test_markdown_not_gated_before_approval(self):
+        # IDLE project (no .design-gate) → source is blocked, but .md is exempt.
+        with tempfile.TemporaryDirectory() as tmp:
+            def deny_for(file_path):
+                payload = {
+                    "cwd": tmp,
+                    "tool_name": "Write",
+                    "tool_input": {"file_path": file_path},
+                }
+                out = io.StringIO()
+                with contextlib.redirect_stdout(out):
+                    dg.handle_pre_tool(payload)
+                return out.getvalue()
+
+            self.assertEqual("", deny_for(str(Path(tmp) / "docs" / "notes.md")))
+            self.assertIn("deny", deny_for(str(Path(tmp) / "src" / "service.py")))
+
 
 if __name__ == "__main__":
     unittest.main()
